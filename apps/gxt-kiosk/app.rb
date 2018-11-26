@@ -3,6 +3,7 @@ register_app 'dtac', 'gxt-kiosk'
 
 require 'serialport'
 require 'nokogiri'
+require_relative 'lib'
 
 
 module GxtKiosk
@@ -72,6 +73,39 @@ module GxtKiosk
                 switch name
                 puts  "msg from #{@context.settings.name} #{msg}"
 
+                 
+                t = msg.split(" ")
+                
+                cmd = t[0]
+                
+                case cmd
+                  
+                when "PAYMENT"
+                  
+                  method = t[1]
+                  
+                  case method
+                  
+                  when "START"
+                    
+                    amount = t[2].to_i
+                    payment_start amount
+                    
+                    
+                  when "END"
+                    payment_end
+                    
+                  when "CANCEL"
+                    payment_cancel
+                  end
+                  
+                  
+                else  
+                  
+                end
+                 
+                 
+                 
                  
                 for i in @context.settings.apps_ws[@context.settings.name]
                     # if ws!=i

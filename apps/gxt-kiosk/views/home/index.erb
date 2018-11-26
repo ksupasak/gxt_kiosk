@@ -195,18 +195,20 @@
 		$('.page').hide();
 		$('#page3').show();
 		
+		ws.send("PAYMENT START "+amount);	
 		
 		
 	})
 	
 	
 	$('#payment-cancel-btn').click(function(){
+		ws.send("PAYMENT CANCEL");	
 		reset();
 	})
 	
 	
 	$('#payment-finish-btn').click(function(){
-			
+		ws.send("PAYMENT END");	
 		reset();
 		
 	})
