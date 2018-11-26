@@ -87,10 +87,11 @@ return seq_no+2
 end
 
 
-def payment_end  id= 0, seq_no = 1000, session_id=0
+def payment_end  amount, id= 0, seq_no = 1000, session_id=0
 
   params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
 
+  params.merge! "Amount"=>amount
 
 call "Change", params, '<Cash d4p1:type="0" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
 
@@ -135,16 +136,23 @@ end
 
 
 
-def refill timeout = 10, id= 0, seq_no = 1000, session_id=0
+def refill_start  id= 0, seq_no = 1000, session_id=0
   
   
-  params = {"Id"=>id, "SeqNo"=>seq_no, "SessionID"=>session_id}
+  params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
   
   call "StartReplenishmentFromEntrance" , params
   
-  sleep timeout
+ 
   
-  params.merge!  "SeqNo"=>seq_no+1
+  
+end
+
+def refill_end timeout = 10, id= 0, seq_no = 1000, session_id=0
+  
+  
+  params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
+
   call "EndReplenishmentFromEntrance" , params
   
   
@@ -174,12 +182,17 @@ EOF
 end
 
 
+
+
+
+
+
 # cash_out 5, 1
 
 # refill 
 
 
-def collect timeout = 10, id= 0, seq_no = 1000, session_id=0
+def collect_money  id= 0, seq_no = 1000, session_id=0
   
   
   params = {"Id"=>id, "SeqNo"=>seq_no, "SessionID"=>session_id}
@@ -202,8 +215,44 @@ EOF
   
   call "Collect" , params, extra
   
-  sleep 10
+  sleep 1
   
+   #
+  # params.merge!  "SeqNo"=>seq_no+1
+  # call "UnLockUnit" , params, '<Option d4p1:type="1" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
+  #  params.merge!  "SeqNo"=>seq_no+2
+  # call "UnLockUnit" , params, '<Option d4p1:type="2" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
+  #
+  
+end
+
+
+
+def door_open id= 0, seq_no = 1000, session_id=0
+  
+  
+  params = {"Id"=>id, "SeqNo"=>seq_no, "SessionID"=>session_id}
+#
+# extra = <<EOF
+# <Option d4p1:type="0" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />
+# <Mix d4p1:type="1" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />
+# <IFCassette d4p1:type="1" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />
+#
+# <Cash d4p1:type="5" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="">
+# <Denomination d4p1:cc="THB" d4p1:fv="2000" d4p1:rev="0" d4p1:devid="1"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# <Denomination d4p1:cc="THB" d4p1:fv="10000" d4p1:rev="0" d4p1:devid="1"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# <Denomination d4p1:cc="THB" d4p1:fv="50000" d4p1:rev="0" d4p1:devid="1"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# <Denomination d4p1:cc="THB" d4p1:fv="500" d4p1:rev="0" d4p1:devid="2"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# <Denomination d4p1:cc="THB" d4p1:fv="100" d4p1:rev="0" d4p1:devid="2"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# <Denomination d4p1:cc="THB" d4p1:fv="1000" d4p1:rev="0" d4p1:devid="2"><d4p1:Piece>10</d4p1:Piece><d4p1:Status>0</d4p1:Status></Denomination>
+# </Cash>
+# EOF
+#
+#
+#   call "Collect" , params, extra
+#
+#   sleep 1
+#
   
   params.merge!  "SeqNo"=>seq_no+1
   call "UnLockUnit" , params, '<Option d4p1:type="1" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
@@ -212,8 +261,11 @@ EOF
   
   
 end
+# payment_start 3, 0, 1000
+# sleep 8
+# payment_end 0, 1002
 
-# payment_cancel 0, 1000
+# payment_cancel 0, 10000
 
 # sleep 5
 # refill

@@ -86,23 +86,76 @@ module GxtKiosk
                   
                   method = t[1]
                   
-                  case method
+                      case method
                   
-                  when "START"
+                      when "START"
                     
-                    amount = t[2].to_i
-                   payment_start amount,0, @seq_no
-                   @seq_no += 2
+                        amount = t[2].to_i
+                       payment_start amount,0, @seq_no
+                       @seq_no += 2
                     
-                  when "END"
-                    payment_end 0, @seq_no
-                    @seq_no += 1
+                      when "END"
+                        payment_end 0, @seq_no
+                        @seq_no += 1
                     
-                  when "CANCEL"
-                    payment_cancel 0, @seq_no
-                    @seq_no +=1
-                  end
+                      when "CANCEL"
+                        payment_cancel 0, @seq_no
+                        @seq_no +=1
+                      end
+                
+
+                      # $('#refill-start-btn').click(function(){
+     #                    ws.send("REFILL START")
+     #                  })
+     #                  $('#refill-stop-btn').click(function(){
+     #                    ws.send("REFILL END")
+     #                  })
+     #
+     #                  $('#cashout-btn').click(function(){
+     #                    ws.send("CASHOUT 20 1")
+     #                  })
+     #
+     #                  $('#collect-btn').click(function(){
+     #                    ws.send("COLLECT ALL")
+     #                  })
+     #
+     #                  $('#collect-btn').click(function(){
+     #                    ws.send("DOOR OPEN")
+     #                  })
+     #
                   
+                 when "REFILL"
+                    method = t[1]
+                    case method
+                      
+                    when 'START'
+                      refill_start 0, @seq_no
+                      @seq_no+=1
+                    when 'END'
+                      refill_end 0, @seq_no
+                      @seq_no+=1
+                    end
+                   
+                   
+                   
+                 when "CASHOUT"
+                   
+                   cash_out 20, 1, 0, @seq_no
+                   @seq_no+=1
+                   
+                  
+                 when "COLLECT"
+                   
+                   collect_money 0, @seq_no
+                   @seq_no+=1
+                   
+                 when "DOOR"
+                   
+                  
+                   
+                    door_open 0, @seq_no
+                    @seq_no+=1
+                   
                   
                 else  
                   

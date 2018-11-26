@@ -20,26 +20,51 @@
 
 <div class="row">
 <div class="col-sm-6">Refill Coin & BankNote</div>
-<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+<div class="col-sm-6"><%=link_to 'Start','#', :id=>'refill-start-btn',:class=>"btn btn-default" %> | <%=link_to 'Stop','#', :id=>'refill-stop-btn',:class=>"btn btn-default" %></div>
 </div>	
 
 <div class="row">
 <div class="col-sm-6">Cash Out</div>
-<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'cashout-btn',:class=>"btn btn-default" %></div>
 </div>	
 
 <div class="row">
 <div class="col-sm-6">Collect All Money</div>
-<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'collect-btn',:class=>"btn btn-default" %></div>
 </div>	
 
 
 <div class="row">
 <div class="col-sm-6">Open Door</div>
-<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'open-btn',:class=>"btn btn-default" %></div>
 </div>	
 
+<script>
 
+
+$('#refill-start-btn').click(function(){
+	ws.send("REFILL START")
+})
+$('#refill-stop-btn').click(function(){
+	ws.send("REFILL END")
+})
+
+$('#cashout-btn').click(function(){
+	ws.send("CASHOUT 20 1")
+})
+
+$('#collect-btn').click(function(){
+	ws.send("COLLECT ALL")
+})
+
+$('#open-btn').click(function(){
+	ws.send("OPEN ALL")
+})
+
+
+
+</script>
+	
 <div class="row">
 	
 <%= link_to 'Back to Home', "index", :id=>'payment-btn', :class=>'btn btn-defualt debug' %>&nbsp;&nbsp;&nbsp;
