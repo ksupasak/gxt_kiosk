@@ -197,6 +197,8 @@ def self.process s
   # </StatusChangeEvent>
   # </BbxEventRequest>      
   
+  begin
+  
   doc  = xml_doc  = Nokogiri::XML(s)
   status = doc.xpath("//BbxEventRequest//StatusChangeEvent//Status")
   
@@ -210,6 +212,10 @@ def self.process s
     
     
   end
+  
+rescue Exception=>e
+  puts "Error"
+end
   
   
 end
