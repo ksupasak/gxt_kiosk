@@ -208,7 +208,9 @@
 	
 	
 	$('#payment-finish-btn').click(function(){
-		ws.send("PAYMENT END");	
+		amount = $('.payment-total-amount').html();
+		
+		ws.send("PAYMENT END "+amount);	
 		reset();
 		
 	})

@@ -95,7 +95,12 @@ module GxtKiosk
                        @seq_no += 2
                     
                       when "END"
-                        payment_end 0, @seq_no
+                        
+                        amount = t[2].to_i
+                        
+                        payment_end amount, 0 , @seq_no
+                        
+                        
                         @seq_no += 1
                     
                       when "CANCEL"
