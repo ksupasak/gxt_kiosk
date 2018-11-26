@@ -88,6 +88,7 @@ end
 
 
 def payment_end  amount, id= 0, seq_no = 1000, session_id=0
+  amount *= 100
 
   params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
 
