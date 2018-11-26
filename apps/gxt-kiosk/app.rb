@@ -195,7 +195,20 @@ def self.process s
   #     <User />
   #     <SeqNo />
   # </StatusChangeEvent>
-  # </BbxEventRequest>      
+  # </BbxEventRequest>     
+  
+  
+  # <BbxEventRequest><ChangeInventoryStatus>
+  #     <CausedTransaction>ReplenishmentFromEntrance</CausedTransaction>
+  #     <Cash type="4">
+  #         <Denomination cc="THB" fv="100" rev="0" devid="2">
+  #             <Piece>4</Piece>
+  #             <Status>1</Status>
+  #         </Denomination>
+  #     </Cash>
+  # </ChangeInventoryStatus>
+  # </BbxEventRequest>
+   
   
   begin
   
@@ -212,6 +225,18 @@ def self.process s
     
     
   end
+  
+  if s.index('ChangeInventoryStatus')
+    amount = 0 
+    doc.xpath("//Denomination").each do |e|
+      value = e['fv']
+      piece = e.xpath("//Piece").txt
+      puts "Value = #{value} Count = #{piece}"
+    end
+    
+  
+  end
+  
   
 rescue Exception=>e
   puts "Error"
