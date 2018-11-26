@@ -95,11 +95,11 @@ module GxtKiosk
                    @seq_no += 2
                     
                   when "END"
-                    seq_no = payment_end,0, @seq_no
+                    payment_end,0, @seq_no
                     @seq_no += 1
                     
                   when "CANCEL"
-                    seq_no = payment_cancel,0, @seq_no
+                    payment_cancel,0, @seq_no
                     @seq_no +=1
                   end
                   
