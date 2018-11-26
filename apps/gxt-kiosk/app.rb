@@ -232,6 +232,7 @@ def self.process s
       value = e['fv']
       piece = e.xpath("//Piece").txt
       puts "Value = #{value} Count = #{piece}"
+      ws.send "Inventory #{value}"
     end
     
   
