@@ -66,13 +66,13 @@ def payment_start amount, id= 0, seq_no = 1000, session_id=0
 amount *= 100
   
 
-params = {"Id"=>id, "SeqNo"=>seq_no, "SessionID"=>session_id}
+params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
 
 call "StartCashin" , params
 
 sleep 0.1
 
-params.merge! "Amount"=>amount, "SeqNo"=>seq_no+1
+params.merge! "Amount"=>amount, "SeqNo"=>seq_no+2
 
 call "RefreshSalesTotal", params
 #
@@ -82,14 +82,19 @@ call "RefreshSalesTotal", params
 #
 # call "Change", params, '<Cash d4p1:type="0" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
 
+return seq_no+2
+
 end
 
 
-def payment_end  id= 0, seq_no = 1010, session_id=0
+def payment_end  id= 0, seq_no = 1000, session_id=0
 
-params.merge! "Amount"=>amount, "SeqNo"=>seq_no
+  params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
+
 
 call "Change", params, '<Cash d4p1:type="0" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'
+
+return seq_no+1
 
 end
 
@@ -103,11 +108,11 @@ end
 def payment_cancel timeout = 10, id= 0, seq_no = 1000, session_id=0
   
   
-  params = {"Id"=>id, "SeqNo"=>seq_no, "SessionID"=>session_id}
+  params = {"Id"=>id, "SeqNo"=>seq_no+1, "SessionID"=>session_id}
   
   call "CashinCancel" , params
 
-  
+  return seq_no+1
 end
 
 
@@ -207,6 +212,8 @@ EOF
   
   
 end
+
+# payment_end
 
 # sleep 5
 # refill
