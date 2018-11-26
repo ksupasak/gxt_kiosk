@@ -193,7 +193,7 @@ EOF
    
    #. glory api
   EM.next_tick do 
-   EventMachine::start_server "0.0.0.0", 55561, GloryCallBackServer
+   EventMachine::start_server "192.168.0.10", 55561, GloryCallBackServer
     puts 'running GloryCallBackServer on 55561'
   end
    # EM.next_tick do
