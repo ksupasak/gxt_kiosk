@@ -1,0 +1,295 @@
+<style>
+	.header{
+		font-size:0.7em;
+	}
+	</style>
+<div class="row page" id="page1">
+
+<div class="col-sm-12 col-lg-12 text-center" >
+<span id="wis-1" class="header">1. Please Enter Phone Number</span>
+<div class="row user-panel"  >
+</div>
+
+<div class="row">
+
+<input type="number" name="phone" id="phone" value="0805114553"/>
+</div>
+<br/>
+
+<%= link_to 'Search', "#", :id=>'search-btn', :class=>'btn btn-success' %>
+
+</div>	
+
+</div>
+
+<!--#####################################################-->
+
+<div class="row page" id="page2">
+
+<div class="col-sm-12 col-lg-12 text-center" >
+2. <span id="wis-2"  class="header">Click Payment to pay with cash </span> 
+	
+<div class="row user-panel">
+	<div class="col-sm-6">
+		<span id="name">Supaxxx</span>
+	</div>
+	<div class="col-sm-6">
+		<span id="phone">08-0511-xxxx</span>
+	</div>
+	
+</div>
+
+<div class="row">
+<div class="col-sm-3"></div>	
+<div class="col-sm-6">
+	
+<div class="row">
+	<div class="col-sm-6">	
+		ยอดชำระทั้งหมด
+	</div>
+	<div class="col-sm-6  text-right">	
+		<span class="total-amount" >320</span> <span class="tx-unit" >BTH</span>
+	</div>
+</div>
+
+<div class="row" style="margin-top:1em">
+	<div class="col-sm-6">	
+		หัก คงเหลือในระบบ
+	</div>
+	<div class="col-sm-6  text-right">	
+		<span class="total-balance" >0</span> <span class="tx-unit" >BTH</span>
+	</div>
+</div>
+
+<div class="row" style="margin-top:1em;color:yellow">
+	<div class="col-sm-6" >	
+		ยอดเงินที่ต้องชำระ
+	</div>
+	<div class="col-sm-6 text-right">	
+	
+		<input type="number" class="total-amount text-right" name="phone" id="total-amount" value="320" style="width:170px"/>	
+			<span class="tx-unit" >BTH</span>
+			
+	</div>
+</div>
+
+
+
+</div>
+</div>
+<br/>
+<%= link_to 'Payment', "#", :id=>'goto-payment-btn', :class=>'btn btn-success' %>&nbsp;&nbsp;&nbsp;
+<%= link_to 'Back', "#", :id=>'back-btn', :class=>'btn btn-info reset-btn' %>
+
+</div>
+</div>
+
+<!--#####################################################-->
+
+
+<div class="row page" id="page3">
+
+<div class="col-sm-12 col-lg-12 text-center" >
+3. <span id="wis-2"  class="header">Pay with cash </span> 
+	
+<div class="row user-panel">
+	<div class="col-sm-6">
+		<span id="name">Supaxxx</span>
+	</div>
+	<div class="col-sm-6">
+		<span id="phone">08-0511-xxxx</span>
+	</div>
+	
+</div>
+
+
+
+
+<div class="row">
+<div class="col-sm-3"></div>	
+<div class="col-sm-6">
+	
+<div class="row">
+	<div class="col-sm-6">	
+		ยอดที่ต้องทั้งหมด
+	</div>
+	<div class="col-sm-6  text-right">	
+		<span class="payment-total-amount" >0</span> <span class="tx-unit" >BTH</span>
+	</div>
+</div>
+
+<div class="row" style="margin-top:1em">
+	<div class="col-sm-6">	
+		ยอดรับ
+	</div>
+	<div class="col-sm-6  text-right">	
+		<u><span class="payment-amount" >0</span></u> <span class="tx-unit" >BTH</span>
+	</div>
+</div>
+
+<div class="row" style="margin-top:1em">
+	<div class="col-sm-6">	
+		คงเหลือ
+	</div>
+	<div class="col-sm-6  text-right">	
+		<span class="payment-total-balance" >0</span> <span class="tx-unit" >BTH</span>
+	</div>
+</div>
+
+<div class="row" style="margin-top:1em;color:yellow">
+	<div class="col-sm-6" >	
+		เงินทอน
+	</div>
+	<div class="col-sm-6 text-right">	
+	
+		<span class="change-amount" >0</span> <span class="tx-unit" >BTH</span>
+			
+	</div>
+</div>
+
+
+</div>
+</div>
+
+<br/>
+
+<%= link_to 'Finish', "#", :id=>'payment-finish-btn', :class=>'btn btn-success' %>&nbsp;&nbsp;&nbsp;
+<%= link_to 'Cancel', "#", :id=>'payment-cancel-btn', :class=>'btn btn-warning' %>&nbsp;&nbsp;&nbsp;
+
+</div>
+</div>
+
+
+
+<br/>
+<script>
+	
+	function reset(){
+		$('.page').hide();
+		
+		$('#page1').show();
+	}
+	$('#search-btn').click(function(){
+		$('.page').hide();
+		$('#page2').show();
+	})
+	
+	$('.reset-btn').click(function(){
+		reset();
+	})
+	
+	reset();
+	
+	
+	$('#goto-payment-btn').click(function(){
+		
+		amount = $('#total-amount').val();
+		
+		console.log(amount)
+		$('.payment-amount').html('0');
+		$('.change-amount').html('0');
+		
+		$('.payment-total-amount').html(amount);
+		$('.payment-total-balance').html(amount);
+		
+		$('.page').hide();
+		$('#page3').show();
+		
+		
+		
+	})
+	
+	
+	$('#payment-cancel-btn').click(function(){
+		reset();
+	})
+	
+	
+	$('#payment-finish-btn').click(function(){
+			
+		reset();
+		
+	})
+	
+	
+	
+	
+</script>
+	
+	
+	<footer  class="page-footer font-small blue debug" >
+	WS : <input type="text" name="msg" id="msg" value="CASHIN 1000"/><%=link_to 'Submit','#',:id=>'msg-btn',:class=>'btn btn-default', :style=>'font-size:0.8em'%><br/>	
+	MSG : <span id="msgs">..</span><br/>
+	Admin :  <%= link_to 'Click to Admin', "admin", :class=>'btn btn-default', :style=>'font-size:0.8em' %>&nbsp;&nbsp;&nbsp;
+	</footer>
+	
+	
+	<script>
+	
+	var show = function(el){
+        return function(msg){ el.innerHTML = msg  }
+      }(document.getElementById('msgs'));
+	
+
+  	var ws   = new WebSocket('ws://' + window.location.host + window.location.pathname);
+
+  	var plot_pos = {};
+
+    ws.onopen    = function()  { show('websocket opened'); 
+
+  		// ws.send('WS.Select name=<%=session.id%>\n["ZoneUpdate zone_id=*","Alert station_id=*","Data.Image station_id=*"]')
+		console.log('ws : open')
+
+  	};
+  
+    ws.onclose   = function()  { show('websocket closed'); 
+	
+	 	setTimeout(function () {
+	       window.location.href = "index"; //will redirect to your blog page (an ex: blog.html)
+	    }, 2000); //will call the function after 2 secs.
+
+
+    }
+    
+	ws.onmessage = function(m) { 
+		console.log('ws : msg : '+m.data)
+		// alert(m.data)
+		show(m.data)
+		
+		// CASHIN number
+		msg = m.data
+		t = msg.split(' ');
+		cmd = t[0];
+		console.log(cmd);
+		
+		if(cmd=='CASHIN'){
+			total = parseInt($('.payment-total-amount').html());
+			amount = parseInt(t[1]);
+			change = total - amount;
+			balance = change;
+			if(change<=0){
+				balance=0;
+				
+			}else{
+				change=0
+			}
+			console.log(change)
+			
+			$('.payment-total-balance').html(balance);
+			$('.payment-amount').html(amount);
+			$('.change-amount').html(-change);
+			
+		}
+		
+	
+	}
+	
+	$('#msg-btn').click(function(){
+		value = $('#msg').val()
+		// $('#msg').val('')
+		ws.send(value)
+	})
+	
+	
+	
+</script>

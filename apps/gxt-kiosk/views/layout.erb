@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+	<link href="<%=url_for('css/main.css?=22')%>" rel="stylesheet">
+   	<script src="/vendor/d3/d3.min.cus.js"></script>
+
+    <title>DTAC POC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<%=url_for '/vendor/bootstrap/css/bootstrap.css'%>" rel="stylesheet">
+    <link href="<%=url_for '/vendor/bootstrap/css/bootstrap-theme.css'%>" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="" rel="stylesheet">
+	<script src="/vendor/jquery-1.9.1.min.js"></script>
+    <script>
+	$(window).bind(
+	  'touchmove',
+	   function(e) {
+	    e.preventDefault();
+	  }
+	);
+	</script>
+	
+	<style>
+		body {
+			background-color:#60a4d9;
+		    background-image: url("/gxt/dtac/bg.png");
+		    background-repeat: no-repeat;
+		      background-size: 120% 800px;
+			  color: #eee;
+			  font-size:2.5em;
+		}
+		.user-panel {
+		    background-image: url("/gxt/dtac/bg2.png");
+		    background-repeat: repeat-x;
+		    background-size: 100% 120px;
+			height:120px;padding-top:42px
+		}
+		input{
+			color:#111;
+		}
+		.btn{
+			font-size:1.5em;
+		}
+		.debug{
+			font-size:0.5em;
+		}
+		</style>
+  </head>
+
+  <body style="">
+
+
+    <main role="main" class="" style="border:0px solid red;">
+   <img src="/gxt/dtac/logo.png" height="80"/>
+   <%=yield :content%>
+	
+    </main><!-- /.container -->
+		<footer class=" text-center" style="color:#ccc;font-size:0.5em">
+		** PIF & GXT for DTAC POC : 27/11/2018 **
+		</footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    -->
+    <!-- <script src="<%=url_for '../miot/js/bootstrap.min.js'%>"></script>')</ -->
+  </body>
+</html>
+

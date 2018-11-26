@@ -1,0 +1,621 @@
+
+
+
+<style>
+body{
+	background:black;
+}
+.station{
+
+	width:45em;
+ 	border-radius: 5px;
+	display:block;
+	color:#aaa;	
+	background-color:black;
+	float:left;
+	margin:0.5%;
+	padding:10px;
+}
+div.clear {
+    clear:both;
+}
+
+.msg{
+	font-size:0.5em;
+}
+
+.bp_alert{
+	background-color:#005;
+}
+.bp_alert_2{
+	background-color:#900;
+}
+
+
+.station .id{
+	color:#aaa;
+
+}
+
+.station .pr{color:#01bf02;
+
+}
+
+.station .bp{color:#5990b7;
+
+}
+
+.station .so2{color:#bcaf06;
+
+}
+
+.station .rr{color:#b7851d;
+
+}
+
+
+.station .cc{
+	color:#00b3b7;
+
+}
+.station .uc{
+	color:#f937e2;
+
+}
+
+.pr-label{
+	color:#01bf02;
+}
+
+.bp-label{
+	color:#5990b7;
+
+}
+.so2-label{
+	color:#bcaf06;
+
+}
+.rr-label{
+	color:#b7851d;
+
+}
+
+.cc-label{
+	color:#00b3b7;
+
+}
+.uc-label{
+	color:#f937e2;
+
+}
+.msg{
+	font-size:1em;
+	color:red;
+}
+
+
+.ctlx{
+	font-size:2em;
+	line-height: 3em;
+
+}
+.boxx{
+	line-height: 3em;
+	font-size:2em;
+	border:1px solid #333;
+	text-align: center;
+	 border-radius: 5px;
+	background:black;
+}
+.pid{
+background:black;
+border-radius: 5px;
+
+}
+.x-label{
+	font-size:0.5em;float:left;margin-left:-10px;margin-top:-2em;
+}
+.sos{
+	line-height:1em;font-size:5em;text-align: center;
+}
+.hide{
+	display:none;
+}
+
+</style>
+
+	<div id="panel" class="panel" style="border:0px solid blue">
+
+		
+		<% for i in settings.stations.keys.sort %>
+		<div id="<%=i%>" class="station active-station">
+			<div class="row">
+				<!--	<div class="col-sm-1 ">
+				
+					<div class="row">
+						<div class="col-12 ctlx">
+							P
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 ctlx">
+							M
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 ctlx">
+							S
+						</div>
+					</div>
+				</div>-->
+				<div class="col-sm-6">
+					<div class="row">
+					<div class="col-sm-6 boxx"><span class="pr-label x-label" >PR</span><span class="pr" >-</span></div>
+					<div class="col-sm-6 boxx"><span class="bp-label x-label" >BP</span><span class="bp">-/-</span></div>
+					<div class="col-sm-6 boxx"><span class="so2-label x-label" >SpO<sub>2</sub></span><span class="so2">-</span></div>
+					<div class="col-sm-6 boxx"><span class="rr-label x-label" >RR</span><span class="rr">-</span></div>
+					<div class="col-sm-6 boxx"><span class="cc-label x-label" >CC</span><span class="cc" >-</span></div>
+					<div class="col-sm-6 boxx"><span class="uc-label x-label" >UC</span><span class="uc">-</span></div>
+					</div>
+					
+				</div>
+				<div class="col-sm-6 pid" >
+						<div class="row">
+						<div class="col-sm-12" style="font-size:1em;text-align:center"><span class="id  "><%=i%></span></div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12" style="font-size:1em"><span class="hn  "><%=i%></span></div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12 sos" ><span class="sos"></span></div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12" style="border:0px solid gray;">
+						<div class="line"></div>
+						<div class="col-sm-12 msg" style="">-</div>	
+						 
+						<%#link_to 'show', "station?name=#{i}",:class=>'btn' %>
+						<center>
+							<%=link_to "Show", "../Station/show?name=#{i}" %>
+							
+							<img id="image" class="col-sm-12" alt="" style=""/>
+						</center>
+						 </div>
+						<div class='row'>
+						
+					
+						</div></div>
+				</div>
+				
+			</div>
+		
+		
+			
+		</div>
+		
+		<% end %>
+		<script>
+		
+		
+		</script>
+	
+		
+		<div class="clear"></div>
+	</div>
+	
+		<div id="template" class="station" style="display:none">
+				<div class="row">
+					<div class="col-sm-1">
+						<div class="row">
+							<div class="col-sm-12 ctlx">
+								P
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 ctlx">
+								M
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 ctlx">
+								S
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="row">
+						<div class="col-sm-6 boxx"><span class="pr-label x-label" >PR</span><span class="pr" >-</span></div>
+						<div class="col-sm-6 boxx"><span class="bp-label x-label" >BP</span><span class="bp">-/-</span></div>
+						<div class="col-sm-6 boxx"><span class="so2-label x-label" >SpO<sub>2</sub></span><span class="so2">-</span></div>
+						<div class="col-sm-6 boxx"><span class="rr-label x-label" >RR</span><span class="rr">-</span></div>
+						<div class="col-sm-6 boxx"><span class="cc-label x-label" >CC</span><span class="cc" >-</span></div>
+						<div class="col-sm-6 boxx"><span class="uc-label x-label" >UC</span><span class="uc">-</span></div>
+						</div>
+
+					</div>
+					<div class="col-sm-3 pid" >
+							<div class="row">
+							<div class="col-sm-12" style="font-size:0.8em"><span class="id  "><%=i%></span></div>
+							</div>
+							<div class="row">
+							<div class="col-sm-12" style="font-size:0.8em"><span class="hn  "><%=i%></span></div>
+							</div>
+							<div class="row">
+							<div class="col-sm-12 " ><span class="sos">10</span></div>
+							</div>
+							<div class="row">
+							<div class="col-sm-12">
+							<canvas class="plot" id="plot-<%=i%>"  style="border:1px solid #000000;background:#ccc;height:100%;width:100%;display:none">
+							</canvas>
+							</div></div>
+					</div>
+
+				</div>
+				<div class="row">
+						<span class="col-sm-12 msg"></span>	
+				</div>
+
+		
+		</div> 
+	
+	<div id="line"></div>
+
+		<script type="text/javascript">
+	    
+
+			$(document).ready(function(){
+				
+				
+					
+			function genData(data){
+			
+				scale = 50;
+			
+				for(var i=0;i<20;i++){
+					r = Math.random();
+					v = Math.sin(360/20*i*Math.PI/180)*(scale*r)+50;
+					data.push(v);
+				}
+			
+			}
+	    
+	
+			function aniLine(idx, sampling, rawdata, last){
+	
+			var w = 100;
+		    var h = 100;
+			var svg;
+
+
+		    svg = d3.select("#"+idx)
+		      .append("svg")
+		      .attr("width", w)
+		      .attr("height", h)
+		      .attr("id", "visualization");
+
+	    
+			// svgo.selectAll("path.old").remove();
+			// svgo.selectAll("path").attr("class", "old");
+
+
+		    var x = d3.scaleLinear().domain([0, sampling]).range([0, w]);
+		    var y = d3.scaleLinear().domain([0, 100]).range([10, h - 10]);
+
+		    var line = d3.line()
+		      .x(function(d,i) {return x(i);})
+		      .y(function(d) {return y(d);})
+		      .curve(d3.curveNatural)
+
+		    // data is created inside the function so it is always unique
+		    let repeat = () => {
+		      var data = rawdata //d3.range(101).map(function(){return Math.random()*100})
+
+		      // Uncomment following line to clear the previously drawn line
+		      //svg.selectAll("path").remove();
+
+		      // Set a light grey class on old paths
+	     
+		      // svg.selectAll("path").remove();
+					// 		   var last_path = svg.append("path")
+					// 		        .attr("d", line(last))
+					// 		        .attr("stroke", "gray")
+					// 		        .attr("stroke-width", "2")
+					// 		        .attr("fill", "none")
+					// .attr("class", "old");
+				// last_path.add
+
+		      var path = svg.append("path")
+		        .attr("d", line(data))
+		        .attr("stroke", "green")
+		        .attr("stroke-width", "2")
+		        .attr("fill", "none");
+
+		      var totalLength = path.node().getTotalLength();
+
+		      path
+		        .attr("stroke-dasharray", totalLength + " " + totalLength)
+		        .attr("stroke-dashoffset", totalLength)
+		        .transition()
+		          .duration(1000)
+		          .ease(d3.easeLinear)
+		          .attr("stroke-dashoffset", 0)
+		          // .on("end", repeat);
+		    };
+		    repeat();
+			}
+		
+			// aniLine('line1')
+			// aniLine('line2')
+			// aniLine('line3')
+			// aniLine('line4')
+	
+		
+		
+			function showWave(div,data){
+			var n = 32; // sample for a second
+		    var cut = 1;
+			var show = 6; //second
+			var second = 0;
+			var lastdata = [];
+		
+			var intervalID = setInterval(function(){
+				if(second%show==show-1){
+					
+					$('#'+div).html("");
+					
+				}
+					// genData(data);
+					if(second%cut==cut-1&&second<1000){
+					
+						rawdata = data.splice(0,cut*n+1);
+						data.unshift(rawdata[rawdata.length-1]);
+						
+						aniLine(div,n ,rawdata,lastdata);
+						lastdata = rawdata;
+						// second = 0 ;
+					}
+					
+					second+=1;
+			}, 1000);
+		
+		
+		   }
+		   
+   
+   
+		   var wave_data = [];
+			
+		
+	showWave('line',wave_data);
+		
+	
+	
+	
+			// showWave('line2',[]);
+			// showWave('line3',[]);
+			// showWave('line4',[]);
+			//
+		
+		
+		
+		
+
+	
+	var show = function(el){
+        return function(msg){ el.innerHTML = msg  }
+      }(document.getElementById('msgs'));
+	
+	
+	  var ws       = new WebSocket('ws://' + window.location.host + window.location.pathname);
+	
+	  var plot_pos = {};
+	
+      ws.onopen    = function()  { show('websocket opened'); 
+
+	  	ws.send('WS.Select name=<%=session.id%>\n["ZoneUpdate zone_id=*","Alert station_id=*","Data.Image station_id=*"]')
+
+	  };
+      ws.onclose   = function()  { show('websocket closed'); 
+		
+	 	setTimeout(function () {
+	       window.location.href = "index"; //will redirect to your blog page (an ex: blog.html)
+	    }, 2000); //will call the function after 2 secs.
+	
+
+      }
+      ws.onmessage = function(m) { 
+	
+		active = $('.active-station').size()
+	
+		// show(''+m.data)
+		
+		lines = m.data.split("\n")
+		
+		console.log(lines[0].split(" ")[0])
+		if(lines[0].split(" ")[0]=='Alert'){
+			data = JSON.parse(lines[1])
+			
+			// alert(data['alert'])
+			
+			$('#'+data['station']).addClass('bp_alert_2');
+			$('#'+data['station']+' .msg').html(data['alert']);
+			
+			// play sound
+			ion.sound.play("bell_ring");
+			
+		}else
+		if(lines[0].split(" ")[0]=='Data.Image'){
+		
+			lines.shift()
+			img = lines.join("")
+			// alert('image '+m.data.length)
+			
+			$("#image").attr('src','data:image/jpg;base64,'+ JSON.parse(img))
+			
+			
+		}
+		else
+		if(lines[0].split(" ")[0]=='ZoneUpdate'){
+		
+	
+		data = JSON.parse(lines[1])
+	
+		if(data['list'].length!=active)
+		window.location.href = "index"; 
+			
+		$('#timer').html(data['time'])
+		for(var id in data['list']){
+			i = data['list'][id]
+			
+			if($('#'+i).length > 0){ 
+			obj = data['data'][i]
+				
+			
+		  if(obj['wave']){	
+			  
+			    // wave_data.push(obj['wave']);
+		   		// wave_data = wave_data.concat(obj['wave']);
+				for(var j=0;j<obj['wave'].length;j++){
+					wave_data.push(obj['wave'][j]);
+				}
+   				console.log(wave_data);
+				// wave_data = obj['wave'];
+		   }
+		    			
+			
+			// console.log(obj)
+			$('#'+i+' .hn').html(obj['ref'])
+			
+			if($('#'+i+' .bp').html()!=obj['bp']){
+				$('#'+i).addClass('bp_alert');
+				$('#'+i).removeClass('bp_alert_2');
+				$('#'+i+' .msg').html("-");
+			}else{
+				$('#'+i).removeClass('bp_alert');
+				// $('#'+i).removeClass('bp_alert_2');
+				// $('#'+i+' .msg').html("-");
+			}
+			
+			$('#'+i+' .bp').html(obj['bp'])
+			
+			
+			$('#'+i+' .pr').html(obj['pr'])
+			$('#'+i+' .rr').html(obj['rr'])
+			$('#'+i+' .so2').html(obj['so2'])
+			
+			
+			$('#'+i+' .sos').html(obj['sos'])
+			
+			
+			
+			
+			
+			// plot = $('#'+i+' .plot').attr("id");
+// 			pos = 0;
+// 			if(plot_pos.hasOwnProperty(plot)==false){
+// 				plot_pos[plot] = 0;
+// 			}else
+// 			{
+// 				pos = plot_pos[plot];
+// 			}
+			
+			
+			// var c = document.getElementById(plot);
+//
+// 			y = 100-parseInt(obj['pr'])/2
+// 			var ctx = c.getContext("2d");
+//
+// 			ctx.beginPath();
+//
+// 			ctx.strokeStyle="#cccccc";
+// 			ctx.moveTo(pos,0);
+// 			ctx.lineTo(pos,100);
+// 			ctx.stroke();
+// 			ctx.moveTo(pos,0);
+// 			ctx.lineTo(pos,100);
+// 			ctx.stroke();
+//
+// 			ctx.beginPath();
+// 			ctx.strokeStyle="#006666ff";
+// 			ctx.moveTo(pos,100);
+// 			ctx.lineTo(pos,y);
+// 			ctx.stroke();
+//
+//
+// 			pos+=5
+// 			if(pos>200){
+// 				pos = 0
+// 				// var w = c.width;
+// 				// 		ctx.clearRect(0, 0, c.width, c.height);
+// 				// 		c.width = 1;
+// 				// 		c.width = w;
+//
+// 			}
+//
+// 			plot_pos[plot] = pos;
+//
+// 			ctx.stroke();
+			
+			
+			}else{
+					// setTimeout(function () {
+				       window.location.href = "index"; //will redirect to your blog page (an ex: blog.html)
+				    // }, 1000); //will call the function after 2 secs.
+				
+			}
+			
+		}
+		 }
+	 };
+
+      // var sender = function(f){
+      //      var input     = document.getElementById('input');
+      //      input.onclick = function(){ input.value = "" };
+      //      f.onsubmit    = function(){
+      //        ws.send(input.value);
+      //        input.value = "send a message";
+      //        return false;
+      //      }
+      //    }(document.getElementById('form'));
+      // 	
+	
+	
+	$('.ctl').each(function(){
+		
+		obj = $(this)
+		
+		obj.click(function(){
+			o = $(this)
+			 ws.send(o.attr('id'));
+		})
+		
+	})
+
+	})
+   
+
+	// init bunch of sounds
+	ion.sound({
+	    sounds: [
+	        {name: "bell_ring"}
+	    ],
+
+	    // main config
+	    path: "<%=url_for 'sounds/'%>",
+	    preload: true,
+	    multiplay: true,
+	    volume: 0.9
+	});
+
+
+
+   </script>
+<div style="font-size:0.8em">
+  	<div style="float:right" id="timer">
+	00:00
+	</div>
+By E.S.M.Solution Co.,Ltd.
+</div>
+
+
+<i style="color:#666">  <div id="msgs" style="font-size:0.8em"></div></i>

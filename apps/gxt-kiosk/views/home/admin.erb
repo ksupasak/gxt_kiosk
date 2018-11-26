@@ -1,0 +1,101 @@
+
+<style>
+	.btn{
+		font-size:0.8em;
+	
+	}
+	.row{
+		margin-bottom:20px;
+	}
+	</style>
+	
+<div class="row text-center " style="border:0px solid">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+	
+<div class="row  user-panel">
+	<div class="col-sm-12 text-center">Admin Interface</div>
+</div>
+<br/>
+
+<div class="row">
+<div class="col-sm-6">Refill Coin & BankNote</div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+</div>	
+
+<div class="row">
+<div class="col-sm-6">Cash Out</div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+</div>	
+
+<div class="row">
+<div class="col-sm-6">Collect All Money</div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+</div>	
+
+
+<div class="row">
+<div class="col-sm-6">Open Door</div>
+<div class="col-sm-6"><%=link_to 'Go','#', :id=>'refill-btn',:class=>"btn btn-default" %></div>
+</div>	
+
+
+<div class="row">
+	
+<%= link_to 'Back to Home', "index", :id=>'payment-btn', :class=>'btn btn-defualt debug' %>&nbsp;&nbsp;&nbsp;
+
+</div>
+</div>
+</div>
+
+<div  class="debug" >
+WS : <input type="text" name="msg" id="msg"/><br/>	
+MSG : <span id="msgs">..</span><br/>
+Admin :  <%= link_to 'Click to Home', "index", :class=>'' %>&nbsp;&nbsp;&nbsp;
+</div>
+
+
+	<script>
+	
+	var show = function(el){
+        return function(msg){ el.innerHTML = msg  }
+      }(document.getElementById('msgs'));
+	
+
+  	var ws   = new WebSocket('ws://' + window.location.host + window.location.pathname);
+
+  	var plot_pos = {};
+
+    ws.onopen    = function()  { show('websocket opened'); 
+
+  		// ws.send('WS.Select name=<%=session.id%>\n["ZoneUpdate zone_id=*","Alert station_id=*","Data.Image station_id=*"]')
+		console.log('ws : open')
+
+  	};
+  
+    ws.onclose   = function()  { show('websocket closed'); 
+	
+	 	setTimeout(function () {
+	       window.location.href = "index"; //will redirect to your blog page (an ex: blog.html)
+	    }, 2000); //will call the function after 2 secs.
+
+
+    }
+    
+	ws.onmessage = function(m) { 
+		console.log('ws : msg : '+m.data)
+		// alert(m.data)
+		show(m.data)
+	
+	}
+	
+	$('#msg').change(function(){
+		value = $(this).val()
+			$(this).val('')
+		ws.send(value)
+	})
+	
+	
+	
+</script>
+
