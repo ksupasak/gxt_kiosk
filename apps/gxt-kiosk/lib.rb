@@ -215,8 +215,6 @@ EOF
   
   call "Collect" , params, extra
   
-  sleep 1
-  
    #
   # params.merge!  "SeqNo"=>seq_no+1
   # call "UnLockUnit" , params, '<Option d4p1:type="1" xmlns:d4p1="http://www.glory.co.jp/bruebox.xsd" xmlns="" />'

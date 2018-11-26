@@ -20,7 +20,7 @@
 
 <div class="row">
 <div class="col-sm-6">Refill Coin & BankNote</div>
-<div class="col-sm-6"><span class="refill-amount">0</span>BTH <%=link_to 'Start','#', :id=>'refill-start-btn',:class=>"btn btn-default" %> | <%=link_to 'Stop','#', :id=>'refill-stop-btn',:class=>"btn btn-default" %></div>
+<div class="col-sm-6"><span class="refill-amount">0</span> BTH <%=link_to 'Start','#', :id=>'refill-start-btn',:class=>"btn btn-default" %> | <%=link_to 'Stop','#', :id=>'refill-stop-btn',:class=>"btn btn-default" %></div>
 </div>	
 
 <div class="row">
@@ -58,7 +58,7 @@ $('#collect-btn').click(function(){
 })
 
 $('#open-btn').click(function(){
-	ws.send("OPEN ALL")
+	ws.send("DOOR OPEN")
 })
 
 
