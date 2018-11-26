@@ -213,7 +213,7 @@ EOF
   
 end
 
-# payment_end
+# payment_cancel 0, 1000
 
 # sleep 5
 # refill

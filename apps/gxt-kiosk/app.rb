@@ -51,7 +51,7 @@ module GxtKiosk
      
      def websocket request
 
-       seq_no = 1000
+       @seq_no = 1000
        
            request.websocket do |ws|
 
@@ -91,13 +91,16 @@ module GxtKiosk
                   when "START"
                     
                     amount = t[2].to_i
-                   seq_no = payment_start amount,0, seq_no
+                   payment_start amount,0, @seq_no
+                   @seq_no += 2
                     
                   when "END"
-                    seq_no = payment_end,0, seq_no
+                    seq_no = payment_end,0, @seq_no
+                    @seq_no += 1
                     
                   when "CANCEL"
-                    seq_no = payment_cancel,0, seq_no
+                    seq_no = payment_cancel,0, @seq_no
+                    @seq_no +=1
                   end
                   
                   
